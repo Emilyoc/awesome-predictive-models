@@ -1,0 +1,34 @@
+# importing useful libraries
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import os
+import csv
+
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import recall_score
+from sklearn.model_selection import GridSearchCV
+
+
+# read the CSV table
+
+df = pd.read_csv('df.csv')     #read_csv import the file to data frame format
+
+# converting all columns to numeric (since scikit-learn doesn't work with strings)
+
+df['ineficiencia_os_anterior'] = df['ineficiencia_os_anterior'].astype('int')
+
+
+##### MODELLING THE DATA #####
+# we are interested in predicting whether a delivery will fail or not
+# in the prediction of a boolean value, we use a classification model
+# for score function, we'll use a risk-averse one -> recall score function
+# to sum up: Random Forest Model with Recall Score Function
+
+
+# separating the data between test and train
+
+#X_train, X_test, y_train, y_test = train_test_split(new_data.drop(["INEF"], axis=1), new_data["INEF"],test_size=0.4,   )
+# reminder: between 0.4 and 0.6 is good practice
